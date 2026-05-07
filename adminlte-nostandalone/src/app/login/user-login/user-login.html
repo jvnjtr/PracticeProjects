@@ -8,19 +8,31 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email" />
+            <input type="email" class="form-control" formControlName="userLoginId" placeholder="Email" />
             <div class="input-group-text">
               <span class="bi bi-envelope"></span>
             </div>
           </div>
+          @if(loginForm.get('userLoginId')?.touched && loginForm.get('userLoginId')?.errors?.['required']){
+            <span class="text-danger">User Name is required</span>
+          }
+           @if(loginForm.get('userLoginId')?.errors?.['minlength']){
+            <span class="text-danger">User Name can not be less than 6 letters</span>
+          }
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password" />
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" />
             <div class="input-group-text">
               <span class="bi bi-lock-fill"></span>
             </div>
           </div>
+          @if(loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']){
+            <span class="text-danger">Password is required</span>
+          }
+          @if(loginForm.get('password')?.errors?.['minlength']){
+            <span class="text-danger">Password is minimum 3 chanracter</span>
+          }
           <!--begin::Row-->
           <div class="row">
             <div class="col-8">
@@ -32,7 +44,7 @@
             <!-- /.col -->
             <div class="col-4">
               <div class="d-grid gap-2">
-                <button type="button" (click)="submitLogin()" class="btn btn-primary">Sign In</button>
+                <button type="submit" class="btn btn-primary">Sign In</button>
               </div>
             </div>
             <!-- /.col -->

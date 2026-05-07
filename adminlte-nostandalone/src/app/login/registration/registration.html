@@ -1,45 +1,143 @@
-
 <div class="register-page bg-body-secondary">
   <div class="register-box">
     <!-- /.register-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header">
-        <a
-          href="../index2.html"
-          class="link-dark text-center link-offset-2 link-opacity-100 link-opacity-50-hover"
-        >
+        <a href="../index2.html" class="link-dark text-center link-offset-2 link-opacity-100 link-opacity-50-hover">
           <h1 class="mb-0"><b>Admin</b>LTE</h1>
         </a>
       </div>
       <div class="card-body register-card-body">
         <p class="register-box-msg">Register a new membership</p>
 
-        <form action="../index3.html" method="post">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="input-group mb-1">
             <div class="form-floating">
-              <input id="registerFullName" type="text" class="form-control" placeholder="" />
+              <input id="registerFullName" type="text" formControlName="name" class="form-control" placeholder="" />
               <label for="registerFullName">Full Name</label>
             </div>
             <div class="input-group-text">
               <span class="bi bi-person"></span>
             </div>
           </div>
+          <!-- Name Error -->
+          @if(registerForm.get('name')?.touched &&
+          registerForm.get('name')?.errors?.['required']){
+          <span class="text-danger">Name is required</span>
+          }
+          @if(registerForm.get('name')?.errors?.['minlength']){
+          <span class="text-danger">Minimum length is 3</span>
+          }
+
           <div class="input-group mb-1">
             <div class="form-floating">
-              <input id="registerEmail" type="email" class="form-control" placeholder="" />
+              <input id="registerEmail" type="email" formControlName="emailId" class="form-control" placeholder="" />
               <label for="registerEmail">Email</label>
             </div>
             <div class="input-group-text">
               <span class="bi bi-envelope"></span>
             </div>
           </div>
+          <!-- Email Errors -->
+          <div class="text-danger mb-2" *ngIf="registerForm.get('emailId')?.touched">
+            <div *ngIf="registerForm.get('emailId')?.errors?.['required']">
+              Email is required
+            </div>
+            <div *ngIf="registerForm.get('emailId')?.errors?.['emailId']">
+              Invalid email format
+            </div>
+          </div>
           <div class="input-group mb-1">
             <div class="form-floating">
-              <input id="registerPassword" type="password" class="form-control" placeholder="" />
+              <input id="registerPassword" type="password" formControlName="userPassword" class="form-control"
+                placeholder="" />
               <label for="registerPassword">Password</label>
             </div>
             <div class="input-group-text">
               <span class="bi bi-lock-fill"></span>
+            </div>
+          </div>
+          <div class="text-danger mb-2" *ngIf="registerForm.get('userPassword')?.touched">
+            <div *ngIf="registerForm.get('userPassword')?.errors?.['required']">
+              Password is required
+            </div>
+            <div *ngIf="registerForm.get('userPassword')?.errors?.['minlength']">
+              Password must be at least 6 characters
+            </div>
+          </div>
+
+          <div class="input-group mb-1">
+            <input type="file" class="form-control" id="inputGroupFile02" formControlName="userImage"
+              (change)="onFileChange($event)" />
+            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+          </div>
+          <div class="text-danger mb-2" *ngIf="registerForm.get('userImage')?.touched">
+            <div *ngIf="registerForm.get('userImage')?.errors?.['invalidFileType']">
+              Only JPG, PNG and PDF files are allowed
+            </div>
+            <div *ngIf="registerForm.get('userImage')?.errors?.['maxSize']">
+              File size must be less than 5 MB
+            </div>
+          </div>
+          <div class="input-group mb-1">
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="gender" id="gridRadios1" value="1"/>
+                <label class="form-check-label" for="gridRadios1"> Male </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="gender" id="gridRadios2" value="2" />
+                <label class="form-check-label" for="gridRadios2"> Female </label>
+              </div>
+              
+            </div>
+          </div>
+          <div class="text-danger mb-2" *ngIf="registerForm.get('userImage')?.touched">
+            <div *ngIf="registerForm.get('gender')?.errors?.['required']">
+              Please Select Gender
+            </div>
+          </div>
+          <div class="input-group mb-1">
+            <div class="form-floating">
+              <input id="registerFullName" type="text" formControlName="mobile" class="form-control" placeholder="" />
+              <label for="registerFullName">Mobile Number</label>
+            </div>
+            <div class="input-group-text">
+              <span class="bi bi-person"></span>
+            </div>
+          </div>
+          <!-- Name Error -->
+          @if(registerForm.get('mobile')?.touched &&
+          registerForm.get('mobile')?.errors?.['required']){
+          <span class="text-danger">Mobile No. is required</span>
+          }
+          @if(registerForm.get('mobile')?.errors?.['maxlength']){
+          <span class="text-danger">Minimum length is 10</span>
+          }
+           <div class="input-group mb-1">
+            <div class="form-floating">
+              <input id="registerFullName" type="text" formControlName="userLoginId" class="form-control" placeholder="" />
+              <label for="registerFullName">User ID</label>
+            </div>
+            <div class="input-group-text">
+              <span class="bi bi-person"></span>
+            </div>
+          </div>
+          <!-- Name Error -->
+          @if(registerForm.get('userLoginId')?.touched &&
+          registerForm.get('userLoginId')?.errors?.['required']){
+          <span class="text-danger">User ID is required</span>
+          }
+          @if(registerForm.get('userLoginId')?.errors?.['minlength']){
+          <span class="text-danger">Minimum length is 6</span>
+          }
+          <div class="input-group mb-1">
+            <div class="form-floating">
+              <input id="registerFullName" type="text" formControlName="address" class="form-control" placeholder="" />
+              <label for="registerFullName">Address</label>
+            </div>
+            <div class="input-group-text">
+              <span class="bi bi-person"></span>
             </div>
           </div>
           <!--begin::Row-->
@@ -62,20 +160,10 @@
           </div>
           <!--end::Row-->
         </form>
-
-        <div class="social-auth-links text-center mb-3 d-grid gap-2">
-          <p>- OR -</p>
-          <a href="#" class="btn btn-primary">
-            <i class="bi bi-facebook me-2"></i> Sign in using Facebook
-          </a>
-          <a href="#" class="btn btn-danger">
-            <i class="bi bi-google me-2"></i> Sign in using Google+
-          </a>
-        </div>
         <!-- /.social-auth-links -->
 
         <p class="mb-0">
-          <a href="login.html" class="link-primary text-center"> I already have a membership </a>
+          <a routerLink="/login" class="link-primary text-center"> I already have a membership </a>
         </p>
       </div>
       <!-- /.register-card-body -->
