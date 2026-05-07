@@ -1,0 +1,7 @@
+<p>tasks-component works!</p>
+<!-- <p>{{userInformation | json }}</p> -->
+<p>{{selectedUserFromParent.name}}</p>
+@for(task of selectedUserTask;track task.userid){
+   <p>{{task.title}}</p>
+   <p>{{task.summary}}</p>
+}

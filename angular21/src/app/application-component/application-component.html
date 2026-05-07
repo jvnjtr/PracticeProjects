@@ -1,0 +1,16 @@
+<app-header-component></app-header-component>
+
+<main>
+    <ul id="users">
+        <li *ngFor="let user of users">
+            <app-user-component [avatar]="user.avatar" [name]="user.name" [userid]="user.id"
+                (selectedUserFromUserComponent)="onUserSelected($event)"></app-user-component>
+        </li>
+    </ul>
+    @if(selectedUserFromChild){
+    <app-tasks-component [selectedUserFromParent]="selectedUserFromChild"></app-tasks-component>
+    }@else {
+        <p>No User Selected</p>
+    }
+
+</main>
