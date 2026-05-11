@@ -1,0 +1,27 @@
+
+<form [formGroup]="ticketForm" (ngSubmit)="submitTicket()">
+  <p>
+    <label>Title</label>
+    <input name="title" id="title" formControlName="title" />
+  </p>
+  @if(ticketForm.get('title')?.touched && ticketForm.get('title')?.errors?.['required']){
+    <span class="text-warning">title is required</span>
+    }
+  <p>
+    <label>Request</label>
+    <textarea name="request" id="request" rows="3" formControlName="description"></textarea>
+  </p>
+  @if(ticketForm.get('description')?.touched && ticketForm.get('description')?.errors?.['required']){
+    <span class="text-warning">description is required</span>
+    }
+  <p>
+    <button>
+      <span>
+        Submit
+      </span>
+      <span class="icon">
+        ⌲
+      </span>
+    </button>
+  </p>
+</form>
