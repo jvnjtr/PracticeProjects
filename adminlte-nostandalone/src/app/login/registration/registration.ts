@@ -18,12 +18,15 @@ export class Registration implements OnInit {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       emailId: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
-      userPassword: ['', [Validators.required, Validators.minLength(6)]],
-      userImage: [''],
+      mobile: ['', [Validators.required, Validators.maxLength(10)]],
       gender: ['', [Validators.required]],
       address: ['', [Validators.required]],
-      mobile: ['', [Validators.required, Validators.maxLength(10)]],
       userLoginId: ['', [Validators.required, Validators.minLength(6)]],
+      userPassword: ['', [Validators.required, Validators.minLength(6)]],
+      userImage: [''],
+      
+      
+      
 
     });
   }

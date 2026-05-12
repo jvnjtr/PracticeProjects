@@ -10,9 +10,13 @@ export class AuthService {
   constructor(private http:HttpClient){
 
   }
+  // registerUserDaa(formData:any):Observable<any>{   // octane
+  //   this.appUrl=this.appUrl+'userRegistration';
+  //   let desnResponse = this.http.post(this.appUrl, formData);
+  //   return desnResponse;
+  // }
   registerUserDaa(formData:any):Observable<any>{
-    this.appUrl=this.appUrl+'userRegistration';
-    let desnResponse = this.http.post(this.appUrl, formData);
+    let desnResponse = this.http.post(this.appUrl + 'createUser', formData);
     return desnResponse;
   }
   loginUser(formData:any):Observable<any>{
