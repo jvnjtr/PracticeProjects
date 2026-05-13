@@ -1,0 +1,11 @@
+<form [formGroup]="testForm" (ngSubmit)="formSubmit()">
+  <div formArrayName="userName">
+    @for (control of userName.controls; track $index) {
+      <input type="text" [formControlName]="$index" />
+      <button type="button" (click)="createform()">Add</button>
+      <button type="button" (click)="removeRow($index)">Remove</button>
+      <br /><br />
+    }
+  </div>
+  <input type="submit" value="Submit" />
+</form>

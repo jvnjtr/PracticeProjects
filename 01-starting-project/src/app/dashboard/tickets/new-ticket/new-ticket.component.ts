@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule,FormArray,FormGroup,FormBuilder,Validators } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,9 @@ import { ReactiveFormsModule,FormArray,FormGroup,FormBuilder,Validators } from '
 })
 export class NewTicketComponent implements OnInit {
   ticketForm !:FormGroup;
+  @HostListener('click') onClick(){
+    alert('clicked')
+  }
   constructor(private fb:FormBuilder){
     
   }

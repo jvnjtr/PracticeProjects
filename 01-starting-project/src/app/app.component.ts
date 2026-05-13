@@ -4,12 +4,13 @@ import { ServerStatusComponent } from "./dashboard/server-status/server-status.c
 import { TrafficComponent } from "./dashboard/traffic/traffic.component";
 import { TicketsComponent } from "./dashboard/tickets/tickets.component";
 import { DashboardItemComponent } from './dashboard/dashboard-item/dashboard-item.component';
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  imports: [HeaderComponent,TrafficComponent, TicketsComponent,DashboardItemComponent,ServerStatusComponent],
+  imports: [HeaderComponent, TrafficComponent, TicketsComponent, DashboardItemComponent, ServerStatusComponent, RouterOutlet],
 })
 export class AppComponent {
  
