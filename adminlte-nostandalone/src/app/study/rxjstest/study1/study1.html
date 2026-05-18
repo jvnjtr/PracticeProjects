@@ -1,0 +1,17 @@
+<h1 class="text-center">THIS PAGE IS FOR SWITCH MAP</h1>
+<p>this switch map function gets the latest subscription value and cancels the previous one</p>
+<p>always holds the latest subsccription value</p>
+<p>search control is a subscription type , when ever it changes any data it emits and with value changes we catch that and pipe makes it in a pipe line and using deboucetime it gets the result</p>
+<p>distinctUntilChanged(),</p>
+<p>debounceTime(500),</p>
+
+<div style="padding:20px">
+    <h2>SwitchMap Example</h2>
+    <input type="text" [formControl]="searchControl" placeholder="Search Products">
+    <br><br>
+ 
+    <h2>Results</h2>
+    <div *ngFor="let item of products">
+        {{ item.title }}
+    </div>
+</div>

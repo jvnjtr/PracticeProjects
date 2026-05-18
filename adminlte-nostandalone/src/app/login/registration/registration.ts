@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { validate } from '@angular/forms/signals';
 import { AuthService } from '../../Services/auth-service';
 import Swal from 'sweetalert2';

@@ -20,7 +20,12 @@ const routes: Routes = [
   },
   {
     path:'dashboard',
-    loadChildren:()=>import('./dashboard/dashboard-module').then(m=>m.DashboardModule)}
+    loadChildren:()=>import('./dashboard/dashboard-module').then(m=>m.DashboardModule)
+  },
+  {
+    path:'study',
+    loadChildren:()=>import('./study/rxjstest/rxjstest-module').then(m=>m.RxjstestModule)
+  }
   
 ];
 

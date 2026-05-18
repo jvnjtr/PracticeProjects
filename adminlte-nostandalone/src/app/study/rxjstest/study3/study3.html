@@ -1,0 +1,21 @@
+<h1 class="text-center">THIS PAGE IS FOR COMBINE LATEST</h1>
+<p>this combine latest function combines the latest values from multiple observables</p>
+<p>it emits a new value only when all source observables have emitted at least one value</p>
+<p>search control is a subscription type , when ever it changes any data it emits and with value changes we catch that and pipe makes it in a pipe line and using deboucetime it gets the result</p>
+
+<div style="padding:20px">
+    <h2>Combine Latest Example</h2>
+    <input type="text" [formControl]="searchControl" placeholder="Search Products">
+    <br><br>
+    <h2>Combine Latest Example</h2>
+    <select [formControl]="categoryControl">
+        <option value="">Select Category</option>
+        <option value="mobile">Mobile</option>
+        <option value="laptop">Laptop</option>
+    </select>
+    <br><br>
+    <h2>Results</h2>
+    <div *ngFor="let item of products">
+        {{ item.title }}
+    </div>
+</div>
