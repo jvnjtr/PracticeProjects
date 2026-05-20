@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginModule } from './login/login-module';
 import { DashboardModule } from './dashboard/dashboard-module';
 import { Registration } from './login/registration/registration';
+import { ReactiveRegistration } from './reactive-registration/reactive-registration';
+import { Arrayfunction } from './study/arrayfunction/arrayfunction';
 
 const routes: Routes = [
   {
@@ -12,6 +14,9 @@ const routes: Routes = [
   },
   {
     path: 'register',component: Registration,
+  },
+  {
+   path:'registerReactive',component:ReactiveRegistration
   },
   {
     path: 'login',
@@ -25,8 +30,10 @@ const routes: Routes = [
   {
     path:'study',
     loadChildren:()=>import('./study/rxjstest/rxjstest-module').then(m=>m.RxjstestModule)
-  }
-  
+  },
+  {path:'array',component:Arrayfunction},
+  {path:'**',redirectTo:'login'}
+
 ];
 
 @NgModule({

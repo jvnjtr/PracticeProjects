@@ -24,6 +24,20 @@ const addUser = async (req, res) => {
 
     }
 };
+
+const checkEmail = async (req, res) => {
+    try{
+      const result = await userService.checkEmailService(req.body.emailId);
+      res.status(200).json(result);
+    }catch(error){
+        res.status(400).json({
+            status: 400,
+            message: error.message,
+            result:''
+        });
+    }
+}
 module.exports={
     addUser,
+    checkEmail
 }

@@ -24,6 +24,10 @@ export class AuthService {
     let desnResponse=this.http.post(this.appUrl,formData);
     return desnResponse;
   }
+  checkEmail(formData:any):Observable<any>{
+    let desnResponse=this.http.post(this.appUrl+'check-email',formData);
+    return desnResponse;
+  }
   getToken() {
     return localStorage.getItem('token');
   }

@@ -39,6 +39,15 @@ const findUserByUserId = async (userLoginId) => {
    return rows[0];
 };
 
+const findUserByEmailId = async (emailId) => {
+    const sql = `
+        SELECT * FROM user_master
+        WHERE emailId=?
+    `;
+    const [rows] = await db.execute(sql, [emailId]);
+    return rows[0];
+};
+
 module.exports = {
    createUser,
    findUserByEmail,

@@ -19,4 +19,5 @@ route.get('/', (req, res) => {
 
 // });
 route.post('/node/api/createUser',userController.addUser)
+route.post('/node/api/check-email',userController.checkEmail);
 module.exports = route;
