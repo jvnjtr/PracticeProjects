@@ -19,6 +19,11 @@ export class AuthService {
     let desnResponse = this.http.post(this.appUrl + 'createUser', formData);
     return desnResponse;
   }
+  getTotalUser():Observable<any>{
+    let desnResponse = this.http.get(this.appUrl + 'getTotalUser');
+    console.log(desnResponse);
+    return desnResponse;
+  }
   loginUser(formData:any):Observable<any>{
     this.appUrl=this.appUrl+'login';
     let desnResponse=this.http.post(this.appUrl,formData);

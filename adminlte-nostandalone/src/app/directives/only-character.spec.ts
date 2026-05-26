@@ -1,8 +1,12 @@
 import { OnlyCharacter } from './only-character';
+import { ElementRef } from '@angular/core';
 
 describe('OnlyCharacter', () => {
   it('should create an instance', () => {
-    const directive = new OnlyCharacter();
+   const mockElementRef = new ElementRef(document.createElement('input'));
+
+    const directive = new OnlyCharacter(mockElementRef);
+
     expect(directive).toBeTruthy();
   });
 });

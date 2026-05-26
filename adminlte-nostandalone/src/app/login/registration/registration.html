@@ -89,7 +89,7 @@
                 <input class="form-check-input" type="radio" formControlName="gender" id="gridRadios2" value="2" />
                 <label class="form-check-label" for="gridRadios2"> Female </label>
               </div>
-              
+
             </div>
           </div>
           <div class="text-danger mb-2" *ngIf="registerForm.get('userImage')?.touched">
@@ -165,6 +165,7 @@
         <p class="mb-0">
           <a routerLink="/login" class="link-primary text-center"> I already have a membership </a>
         </p>
+        <p>{{(rotalUser$ | async)?.totalUsers }}</p>
       </div>
       <!-- /.register-card-body -->
     </div>

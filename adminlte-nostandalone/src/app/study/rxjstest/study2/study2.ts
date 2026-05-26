@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class Study2 implements OnInit, OnDestroy {
   searchSubscription!: Subscription;
-  
+
   postid:any[]=[1,2,3];
   constructor(private http: HttpClient) { }
   ngOnInit(): void {
@@ -31,7 +31,9 @@ export class Study2 implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy(): void {
+    if (this.searchSubscription) {
     this.searchSubscription.unsubscribe();
+  }
   }
 }
 

@@ -33,7 +33,9 @@ export class Study3 implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy(): void {
+    if (this.searchSubscription) {
     this.searchSubscription.unsubscribe();
+  }
   }
 }
 

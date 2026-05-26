@@ -3,6 +3,7 @@ import { Form, FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@a
 import { validate } from '@angular/forms/signals';
 import { AuthService } from '../../Services/auth-service';
 import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-registration',
   standalone: false,
@@ -11,10 +12,13 @@ import Swal from 'sweetalert2';
 })
 export class Registration implements OnInit {
   registerForm!: FormGroup;
+  rotalUser$!:Observable<any>;
   constructor(private fb: FormBuilder, private auth: AuthService) {
 
   }
   ngOnInit(): void {
+
+    this.getTotalUser();
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       emailId: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
@@ -24,11 +28,15 @@ export class Registration implements OnInit {
       userLoginId: ['', [Validators.required, Validators.minLength(6)]],
       userPassword: ['', [Validators.required, Validators.minLength(6)]],
       userImage: [''],
-      
-      
-      
+
+
+
 
     });
+  }
+  getTotalUser(){
+    this.rotalUser$=this.auth.getTotalUser();
+    console.log(this.rotalUser$);
   }
   onSubmit() {
     if (this.registerForm.invalid) {

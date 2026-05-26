@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReactiveRegistration } from './reactive-registration';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {OnlyCharacter} from '../directives/only-character';
 
 describe('ReactiveRegistration', () => {
   let component: ReactiveRegistration;
@@ -9,7 +10,7 @@ describe('ReactiveRegistration', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ReactiveRegistration],
+      declarations: [ReactiveRegistration,OnlyCharacter],
       imports: [FormsModule,ReactiveFormsModule]
     }).compileComponents();
 

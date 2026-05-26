@@ -7,9 +7,10 @@ import { RxjstestModule } from './study/rxjstest/rxjstest-module';
 import { ReactiveRegistration } from './reactive-registration/reactive-registration';
 import { OnlyCharacter } from './directives/only-character';
 import { Arrayfunction } from './study/arrayfunction/arrayfunction';
+import { FileSizePipe } from './pipe/file-size-pipe';
 
 @NgModule({
-  declarations: [App, ReactiveRegistration, OnlyCharacter, Arrayfunction],
+  declarations: [App, ReactiveRegistration, OnlyCharacter, Arrayfunction, FileSizePipe],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, RxjstestModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
