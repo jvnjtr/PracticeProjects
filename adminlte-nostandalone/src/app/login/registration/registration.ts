@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { validate } from '@angular/forms/signals';
 import { AuthService } from '../../Services/auth-service';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registration',
   standalone: false,
@@ -12,13 +13,13 @@ import { Observable } from 'rxjs';
 })
 export class Registration implements OnInit {
   registerForm!: FormGroup;
-  rotalUser$!:Observable<any>;
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  rotalUser$!: Observable<any>;
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
 
   }
   ngOnInit(): void {
 
-    this.getTotalUser();
+    // this.getTotalUser();
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       emailId: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
@@ -34,8 +35,8 @@ export class Registration implements OnInit {
 
     });
   }
-  getTotalUser(){
-    this.rotalUser$=this.auth.getTotalUser();
+  getTotalUser() {
+    this.rotalUser$ = this.auth.getTotalUser();
     console.log(this.rotalUser$);
   }
   onSubmit() {
@@ -115,6 +116,31 @@ export class Registration implements OnInit {
       this.registerForm.get('file')?.setErrors(null);
     }
     this.registerForm.get('file')?.markAsTouched();
+  }
+  gotoPage() {
+    let user = 12;
+    let userName = 'Jivan';
+    let data={
+        user: 12,
+        userName: 'Jivan',
+        email: 'test@gmail.com',
+        role: 'Admin',
+        permissions: ['add', 'edit'],
+        profile: {
+          city: 'Bhubaneswar'
+        }
+      };
+    let encrypted=this.auth.encryptData(JSON.stringify(data));
+    this.router.navigate(['/array'], {
+      queryParams:{
+        id:encrypted
+      }
+    });
+  }
+  gotoPageNew(){
+    let data=12+':'+'Jivan';
+    let enc=this.auth.encryptData(data);
+    this.router.navigate(['/array',enc]);
   }
 
 }

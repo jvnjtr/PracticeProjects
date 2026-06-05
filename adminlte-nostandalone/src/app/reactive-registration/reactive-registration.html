@@ -1,38 +1,39 @@
 <form [formGroup]="registration" (ngSubmit)="submitRegistration()">
   <h2 class="text-white">Welcome on board!</h2>
-  <p class="text-white">We just need a little bit of data from you to get you started 🚀</p>
+  <p class="text-white">We just need a little bit of data from you to get you
+    started 🚀</p>
 
   <div class="control">
     <label for="email">Email</label>
     <input id="email" type="email" formControlName="email" />
   </div>
-   @if(registration.get('email')?.touched &&
+  @if(registration.get('email')?.touched &&
   registration.get('email')
   ?.errors?.['required']
-){
+  ){
 
   <p>
     Email is required
   </p>
-}
+  }
   @if(
   registration.get('email')
   ?.errors?.['invalidEmailFormat']
-){
+  ){
 
   <p>
     Invalid Email Format
   </p>
-}
- @if(
+  }
+  @if(
   registration.get('email')
   ?.errors?.['emailExists']
-){
+  ){
 
   <p>
     Email already exists
   </p>
-}
+  }
   <div class="control-row">
     <div class="control">
       <label for="password">Password</label>
@@ -41,7 +42,8 @@
 
     <div class="control">
       <label for="confirm-password">Confirm Password</label>
-      <input id="confirm-password" type="password" formControlName="confirmPassword" />
+      <input id="confirm-password" type="password"
+        formControlName="confirmPassword" />
     </div>
   </div>
 
@@ -51,61 +53,62 @@
     <div class="control-row">
       <div class="control">
         <label for="first-name">First Name</label>
-        <input type="text" id="first-name" formControlName="firstName" appOnlyCharacter [allowedCharacters]="'.'" />
+        <input type="text" id="first-name" formControlName="firstName"
+          appOnlyCharacter [allowedCharacters]="'.'" />
       </div>
 
       <div class="control">
         <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" formControlName="lastName" appOnlyCharacter [allowedCharacters]="'.'" />
+        <input type="text" id="last-name" formControlName="lastName"
+          appOnlyCharacter [allowedCharacters]="'.'" />
       </div>
     </div>
     <div class="control-row">
       <div class="control">
         <label for="userimage">Image Upload</label>
-        <input type="file" id="userimage" formControlName="userimage" (change)="onFileChange($event)" />
+        <input type="file" id="userimage" formControlName="userimage"
+          (change)="onFileChange($event)" />
       </div>
     </div>
-
 
     <fieldset>
       <legend class="text-white">Your Address</legend>
       <div formArrayName="address">
         @for(adress of address.controls;track $index){
-          <div [formGroupName]="$index">
-        <div class="control-row">
-          <div class="control">
-            <label for="street">Street</label>
-            <input type="text" id="street" formControlName="street" />
-          </div>
-          <div class="control">
-            <label for="city">City</label>
-            <input type="text" id="city" formControlName="city" />
+        <div [formGroupName]="$index">
+          <div class="control-row">
+            <div class="control">
+              <label for="street">Street</label>
+              <input type="text" id="street" formControlName="street" />
+            </div>
+            <div class="control">
+              <label for="city">City</label>
+              <input type="text" id="city" formControlName="city" />
+            </div>
+
+            <div class="control">
+              <label for="state">State</label>
+              <input type="text" id="state" formControlName="state" />
+            </div>
           </div>
 
-          <div class="control">
-            <label for="state">State</label>
-            <input type="text" id="state" formControlName="state" />
+          <div class="control-row">
+            <div class="control">
+              <label for="postal-code">Postal Code</label>
+              <input type="text" id="postal-code" formControlName="zip" />
+            </div>
+
           </div>
+
+          <button type="button" (click)="addAddress()">
+            Add More Address
+          </button>
+          @if(address.length > 1){
+          <button type="button" (click)="removeAddress($index)">
+            Remove Address
+          </button>
+          }
         </div>
-
-        <div class="control-row">
-          <div class="control">
-            <label for="postal-code">Postal Code</label>
-            <input type="text" id="postal-code" formControlName="zip" />
-          </div>
-
-
-        </div>
-
-      <button type="button" (click)="addAddress()">
-        Add More Address
-      </button>
-      @if(address.length > 1){
-       <button type="button" (click)="removeAddress($index)">
-        Remove Address
-      </button>
-      }
-      </div>
         }
       </div>
     </fieldset>
@@ -129,17 +132,20 @@
   <fieldset>
     <legend class="text-white">How did you find us?</legend>
     <div class="control">
-      <input type="checkbox" id="google" formControlName="acquisition" value="google" />
+      <input type="checkbox" id="google" formControlName="acquisition"
+        value="google" />
       <label for="google">Google</label>
     </div>
 
     <div class="control">
-      <input type="checkbox" id="friend" formControlName="acquisition" value="friend" />
+      <input type="checkbox" id="friend" formControlName="acquisition"
+        value="friend" />
       <label for="friend">Referred by friend</label>
     </div>
 
     <div class="control">
-      <input type="checkbox" id="other" formControlName="acquisition" value="other" />
+      <input type="checkbox" id="other" formControlName="acquisition"
+        value="other" />
       <label for="other">Other</label>
     </div>
   </fieldset>
@@ -147,7 +153,8 @@
   <div class="control-row">
     <div class="control">
       <label for="terms-and-conditions">
-        <input type="checkbox" id="terms-and-conditions" formControlName="terms" />
+        <input type="checkbox" id="terms-and-conditions"
+          formControlName="terms" />
         I agree to the terms and conditions
       </label>
     </div>

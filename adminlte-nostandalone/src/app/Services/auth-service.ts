@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import * as CryptoJS from "crypto-js";
 @Injectable({
   providedIn: 'root',
 })
@@ -35,6 +36,15 @@ export class AuthService {
   }
   getToken() {
     return localStorage.getItem('token');
+  }
+  encryptData(value:string){
+    let val=CryptoJS.AES.encrypt(value,environment.secretKey).toString();
+    return val;
+  }
+  decryptData(value:string){
+    let val=CryptoJS.AES.decrypt(value,environment.secretKey);
+     const decrypted = val.toString(CryptoJS.enc.Utf8);
+    return decrypted;
   }
 
 }

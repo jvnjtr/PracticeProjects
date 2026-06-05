@@ -32,6 +32,7 @@ const routes: Routes = [
     loadChildren:()=>import('./study/rxjstest/rxjstest-module').then(m=>m.RxjstestModule)
   },
   {path:'array',component:Arrayfunction},
+  {path:'array/:id',component:Arrayfunction},
   {path:'**',redirectTo:'login'}
 
 ];

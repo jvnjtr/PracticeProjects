@@ -8,6 +8,7 @@ import { ReactiveRegistration } from './reactive-registration/reactive-registrat
 import { OnlyCharacter } from './directives/only-character';
 import { Arrayfunction } from './study/arrayfunction/arrayfunction';
 import { FileSizePipe } from './pipe/file-size-pipe';
+import { ActivatedRoute } from '@angular/router';
 
 @NgModule({
   declarations: [App, ReactiveRegistration, OnlyCharacter, Arrayfunction, FileSizePipe],

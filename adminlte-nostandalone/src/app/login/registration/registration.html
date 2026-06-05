@@ -166,6 +166,8 @@
           <a routerLink="/login" class="link-primary text-center"> I already have a membership </a>
         </p>
         <p>{{(rotalUser$ | async)?.totalUsers }}</p>
+        <button (click)="gotoPage()">redirect</button>
+        <button (click)="gotoPageNew()">redirect2</button>
       </div>
       <!-- /.register-card-body -->
     </div>
