@@ -1,0 +1,97 @@
+<div class="container mt-4">
+  <app-header></app-header>
+</div>
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h4>User List</h4>
+      <div>
+        <button
+          class="btn btn-danger"
+          [disabled]="selectedUsers.length===0"
+          (click)="deleteSelected()">
+
+          Delete Selected
+        </button>
+
+        <button
+          class="btn btn-secondary ms-2"
+          (click)="clearSelection()">
+
+          Clear Selection
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>
+              <input
+                type="checkbox"
+                [checked]="allSelected"
+                (change)="toggleSelectAll($event)">
+            </th>
+            <th>#</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Image</th>
+            <th>Login ID</th>
+            <th>Privilege</th>
+            <th width="150">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <td>
+              <input
+                type="checkbox"
+                [checked]="selectedUsers.includes(user.userId)"
+                (change)="toggleUser(user.userId)">
+            </td>
+            <td>{{ i + 1 }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.genderLabel }}</td>
+            <td>{{ user.mobile }}</td>
+            <td>{{ user.emailId }}</td>
+            <td><span style="font-size: 12px;">
+                {{ user.address }}
+              </span></td>
+            <td><img [src]="user.userImage ? user.userImage : null"
+                alt="User Image" width="50" height="50"></td>
+            <td>{{ user.userLoginId }}</td>
+            <td>{{ user.priviledgeLabel }}</td>
+
+            <td>
+              <button
+                class="btn btn-sm btn-primary me-2"
+                (click)="editUser(user.userId)">
+                Edit
+              </button>
+
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteUser(user.userId)">
+                Delete
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="users.length === 0">
+            <td colspan="7" class="text-center">
+              No users found
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+</div>

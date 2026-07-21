@@ -1,0 +1,220 @@
+<div class="container mt-4">
+<app-header></app-header>
+</div>
+
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h5 class="mb-0">User Registration</h5>
+    </div>
+
+    <div class="card-body">
+      <!-- Put the form here -->
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <!-- Name -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="name" />
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid"
+            >
+              Name is required.
+            </div>
+          </div>
+
+          <!-- Gender -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Gender <span class="text-danger">*</span></label>
+
+            <select class="form-select" formControlName="gender">
+              <option value>Select Gender</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+              <option value="3">Other</option>
+            </select>
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="userForm.get('gender')?.touched && userForm.get('gender')?.invalid"
+            >
+              Gender is required.
+            </div>
+          </div>
+
+          <!-- Mobile -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Mobile <span class="text-danger">*</span></label>
+
+            <input type="text" class="form-control" formControlName="mobile" />
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="userForm.get('mobile')?.touched && userForm.get('mobile')?.invalid"
+            >
+              Enter a valid 10-digit mobile number.
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Email <span class="text-danger">*</span></label>
+
+            <input type="email" class="form-control" formControlName="emailId" />
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="userForm.get('emailId')?.touched && userForm.get('emailId')?.invalid"
+            >
+              Enter a valid email address.
+            </div>
+          </div>
+
+          <!-- Login ID -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Login ID <span class="text-danger">*</span></label>
+
+            <input type="text" class="form-control" formControlName="userLoginId" />
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="userForm.get('userLoginId')?.touched && userForm.get('userLoginId')?.invalid"
+            >
+              Login ID is required.
+            </div>
+          </div>
+          @if (!userId) {
+            <!-- Password -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Password <span class="text-danger">*</span></label>
+
+              <input type="password" class="form-control" formControlName="userPassword" />
+
+              <div
+                class="text-danger mt-1"
+                *ngIf="
+                  userForm.get('userPassword')?.touched && userForm.get('userPassword')?.invalid
+                "
+              >
+                Password must be at least 6 characters.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+
+              <input type="password" class="form-control" formControlName="confirmPassword" />
+
+              <div
+                class="text-danger mt-1"
+                *ngIf="
+                  userForm.get('confirmPassword')?.touched &&
+                  userForm.get('confirmPassword')?.invalid
+                "
+              >
+                Password must be at least 6 characters.
+              </div>
+            </div>
+          }
+          <!-- Privilege -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Privilege</label>
+
+            <select class="form-select" formControlName="priviledge">
+              <option value="1">Admin</option>
+              <option value="2">Manager</option>
+              <option value="3">User</option>
+            </select>
+          </div>
+
+          <!-- User Image -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">User Image</label>
+
+            <input type="file" class="form-control" (change)="onFileChange($event)" />
+          </div>
+
+          <!-- Address -->
+          <div class="col-md-12 mb-3">
+            <label class="form-label">Address</label>
+
+            <textarea rows="3" class="form-control" formControlName="address"></textarea>
+          </div>
+          <hr />
+
+          <div formArrayName="skills">
+            @for (skill of skills.controls; track $index) {
+              <div [formGroupName]="$index" class="row align-items-end mb-3">
+                <!-- Skill -->
+                <div class="col-md-4">
+                  <label class="form-label"> Skills </label>
+                  <select class="form-select" formControlName="skillName">
+                    <option value="" selected disabled>Select skill</option>
+                    @for (sk of mySkill; track sk.id) {
+                      <option [ngValue]="sk.id">
+                        {{ sk.name }}
+                      </option>
+                    }
+                  </select>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      skill.get('skillName')?.touched &&
+                      skill.get('skillName')?.errors?.['required']
+                    "
+                  >
+                    Skill required
+                  </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="col-md-4">
+                  <label class="form-label"> No. of Year </label>
+                  <input type="number" class="form-control" formControlName="noOfYear" />
+                  @if (
+                    skill.get('noOfYear')?.touched && skill.get('noOfYear')?.errors?.['required']
+                  ) {
+                    <div class="text-danger">No. of year is required</div>
+                  }
+
+                  @if (skill.get('noOfYear')?.touched && skill.get('noOfYear')?.errors?.['min']) {
+                    <div class="text-danger">Year must be greater than 0</div>
+                  }
+
+                  <div class="text-danger" *ngIf="skill.get('rowError')?.value">
+                    {{ skill.get('rowError')?.value }}
+                  </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-md-4">
+                  <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-success" (click)="addSkill()">
+                      Add Skill
+                    </button>
+
+                    @if (skills.length > 1) {
+                      <button type="button" class="btn btn-danger" (click)="removeSkill($index)">
+                        Remove
+                      </button>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Hidden Fields -->
+
+        <div class="text-end">
+          <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
+            Save User
+          </button>
+        </div>
+      </form>
+      <!-- Put the form here -->
+    </div>
+  </div>
+</div>
